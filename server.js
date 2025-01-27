@@ -1,0 +1,13 @@
+console.log("hello");
+const express = require("express");
+const accountRouter = require("./routes/accounts");
+const mainappRouter = require("./routes/mainapp");
+const historyRouter = require("./routes/history");
+const app = express();
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use("/account", accountRouter);
+app.use("/budget", mainappRouter);
+app.use("/history", historyRouter);
+app.listen(3000);

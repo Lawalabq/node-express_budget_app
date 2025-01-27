@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    
+    <a href="/account"><h2>Log Out</h2></a>
+    <h1>Welcome <%= locals.name %></h1>
+    <h2>Your Account Balance <%= locals.account.get_balance() %></h2>
+    <span> <a href=<%="/budget/"+`${locals.name}`+"/Deposit"  %>><p>Record Deposit</p></a>  <a href=<%=`/budget/${locals.name}/Withdrawl` %>><p>Record Withdrawl</p></a></span>
+
+    <div>
+     <% count=0 %>
+      <table>
+        <tr>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Date</th>
+        </tr>
+<% for(var transaction of account.history) { %>
+        <tr>
+
+  <% if (count==3) { %>
+   <% break %>
+  <% } %>
+
+
+   <td><%= transaction[1]  %></td>
+    <td><%= transaction[2]  %></td>
+      <td><%= transaction[3] %></td>
+          <% count+=1 %>
+ </tr>
+<% } %>
+          
+       
+      </table>
+      <p><a href="<%=`/history/${locals.name}`  %>">View All History</a></p>
+    </div>
+  </body>
+</html>

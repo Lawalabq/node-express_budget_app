@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Date</th>
+      </tr>
+      <% for(var transaction of account.history) { %>
+      <tr>
+        <td><%= transaction[1] %></td>
+        <td><%= transaction[2] %></td>
+        <td><%= transaction[3] %></td>
+        <td>
+          <a href="/history/<%=locals.name%>/<%= transaction[0] %>"
+            ><button>Edit</button></a
+          >
+        </td>
+        <td>
+          <form
+            action="/history/<%=locals.name%>/<%= transaction[0] %>"
+            method="DELETE"
+            style="display: inline"
+          >
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <% } %>
+    </table>
+    <a href="/budget/<%=locals.name%>"><button>Return</button> </a>
+  </body>
+</html>
